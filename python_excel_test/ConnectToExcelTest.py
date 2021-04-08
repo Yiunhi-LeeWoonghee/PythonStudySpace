@@ -24,14 +24,13 @@ import glob
 execFileName = "ConnectToExcelTest.py"
 excelDir = "D:\\devStudy\\PythonStudySpace\\excel_test"
 resultDir = "D:\\devStudy\\PythonStudySpace\\excel_tes\\result"
-
+excelExtn = "\\*.xlsx"
 
 # ディレクトリ指定
-# files = glob.glob(excelDir + "\\*.xlsx")
-#for excelfile in files
-#    print(excelfile)
+files = glob.glob(excelDir + excelExtn)
+for excelfile in files:
+    workbook = openpyxl.load_workbook(excelfile)
+    print(workbook)
 
-#for file in [files]
-#    print(file)
 #workbook = openpyxl.load_workbook('D:\\devStudy\\PythonStudySpace\\excel_test\\*.xlsx')
 #print(workbook)
