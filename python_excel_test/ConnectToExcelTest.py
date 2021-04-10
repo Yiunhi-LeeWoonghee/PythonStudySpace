@@ -26,11 +26,11 @@ excelDir = "D:\\devStudy\\PythonStudySpace\\excel_test"
 resultDir = "D:\\devStudy\\PythonStudySpace\\excel_tes\\result"
 excelExtn = "\\*.xlsx"
 
-# ディレクトリ指定
+# ディレクトリ及びExcelファイル指定
 files = glob.glob(excelDir + excelExtn)
+
+# Excelファイル読み込み
 for excelfile in files:
     workbook = openpyxl.load_workbook(excelfile)
-    print(workbook)
-
-#workbook = openpyxl.load_workbook('D:\\devStudy\\PythonStudySpace\\excel_test\\*.xlsx')
-#print(workbook)
+    #シート名取得
+    print(workbook.sheetnames)
