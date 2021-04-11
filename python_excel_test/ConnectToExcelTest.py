@@ -32,5 +32,9 @@ files = glob.glob(excelDir + excelExtn)
 # Excelファイル読み込み
 for excelfile in files:
     workbook = openpyxl.load_workbook(excelfile)
-    #シート名取得
-    print(workbook.sheetnames)
+    # シート取得
+    for sheetName in [workbook.sheetnames]:
+        workSheet = workbook[sheetName]
+        # 各シートのセル取得
+        for col in workSheet.columns:
+            
