@@ -35,6 +35,8 @@ for excelfile in files:
     # シート取得
     for sheetName in [workbook.sheetnames]:
         workSheet = workbook[sheetName]
+        m_row = workSheet.max_row
+        m_col = workSheet.max_column
         # 各シートのセル取得
-        for col in workSheet.columns:
-            
+        for i in m_row:
+            workSheet.cell(column=m_col-i, row=i)
