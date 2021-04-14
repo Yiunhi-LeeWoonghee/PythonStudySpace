@@ -29,12 +29,13 @@ excelExtn = "\\*.xlsx"
 # ディレクトリ及びExcelファイル指定
 files = glob.glob(excelDir + excelExtn)
 
+sheet_index = 0
 # Excelファイル読み込み
 for excelfile in files:
     workbook = openpyxl.load_workbook(excelfile)
     # シート取得
     for sheetName in [workbook.sheetnames]:
-        workSheet = workbook[sheetName]
+        workSheet = workbook[sheet_index]
         m_row = workSheet.max_row
         m_col = workSheet.max_column
         # 各シートのセル取得
