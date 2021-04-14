@@ -23,7 +23,7 @@ import glob
 
 execFileName = "ConnectToExcelTest.py"
 excelDir = "D:\\devStudy\\PythonStudySpace\\excel_test"
-resultDir = "D:\\devStudy\\PythonStudySpace\\excel_tes\\result"
+resultDir = "D:\\devStudy\\PythonStudySpace\\excel_test\\result"
 excelExtn = "\\*.xlsx"
 
 # ディレクトリ及びExcelファイル指定
