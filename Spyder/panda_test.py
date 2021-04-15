@@ -3,15 +3,14 @@
 PandasでExcelファイルを閲覧・編集する
 """
 
-# ライブラリ格納先を明視
 import sys
+# ライブラリ格納先を明視
 sys.path.append('c:\\users\\thele\\appdata\\local\\programs\\python\\python37\\lib\\site-packages')
-# Excelライブラリ
-import pandas as pd
-# 複数ファイル処理ライブラリ
-# import glob
-# コマンドライン解析モジュール
-import argparse
+import pandas as pd # Excelライブラリ
+# import glob # 複数ファイル処理ライブラリ
+import argparse # コマンドライン解析モジュール
+#import pathlib # パス関連モジュール
+import re # 正規表現の標準ライブラリ
 
 execFileName = "panda_test.py" # 起動するpythonファイル指定
 
@@ -34,7 +33,7 @@ for ex_sheet in ex_multi_sheet:
 
 """
 # コマンドラインで引数を受け取る場合
-コマンド : python -m ..excel_test\test1.xlsx ..excel_test\spyder_input_text.txt ..excel_test\spyder_result
+コマンド : python -m ..\excel_test\test1.xlsx ..\excel_test\spyder_input_text.txt ..\excel_test\spyder_result
 
 $1 : 読込むexcelファイルの格納先（相対パス）
 $2 : 読込むテキストファイルの格納先（相対パス）
@@ -54,3 +53,19 @@ input_excel_dir = args.input_excel_dir
 input_text_dir = args.input_text_dir
 output_result_dir = args.output_result_dir
 
+# テキストファイル読込みするためのリスト
+f_lines = [] # 行のリスト
+s_list = [] # 区切りした文字列のリスト
+table_list = [] # テーブル名リスト
+rCount_list = [] # データ件数リスト
+
+# テキストファイル読込み
+f = open(input_text_dir, 'r')
+f_lines = f.read(-1).splitlines()
+for f_line in f_lines:
+    s_list = re.split('\t', f_line)
+    #テーブル名取得
+    table_list.append(s_list[0])
+    #レコード件数取得
+    rCount_list.append(s_list[1])
+f.close()
