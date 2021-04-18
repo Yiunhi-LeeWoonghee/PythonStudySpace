@@ -35,12 +35,10 @@ for ex_sheet in ex_multi_sheet:
 # コマンドラインで引数を受け取る場合
 コマンド : python -m ..\excel_test\test1.xlsx ..\excel_test\spyder_input_text.txt ..\excel_test\spyder_result
 
-$1 : 読込むexcelファイルの格納先（相対パス）
-$2 : 読込むテキストファイルの格納先（相対パス）
-$3 : 結果物の出力先（相対パス）
-
-その他
--m : モジュール実行オプション
+$1 : モジュール実行オプション（複数のパラメータ）
+$2 : 読込むexcelファイルの格納先（相対パス）
+$3 : 読込むテキストファイルの格納先（相対パス）
+$4 : 結果物の出力先（相対パス）
 """
 parser = argparse.ArgumentParser(description=('コマンドで引数受けった上、excel読込み及びファイル出力処理を行う'))
 parser.add_argument('-m', '-multi')
@@ -69,3 +67,46 @@ for f_line in f_lines:
     #レコード件数取得
     rCount_list.append(s_list[1])
 f.close()
+
+# excelで読込む列のindex
+col_index_list = [1,3,5,6,7,8,9]
+
+# excel読込み
+df = pd.read_excel(
+    io=input_excel_dir, # excel格納先
+    sheet_name='テーブル一覧', # シート名指定
+    header=0,
+    index_col=col_index_list
+    )
+print(df)
+# excelで必要な列だけ読込むための設定
+"""
+DataFrameで特定の列を取得する
+
+DataFrame(
+    data=None, # データオブジェクト
+    index: Optional[Axes]=None, # 行
+    columns: Optional[Axes]=None, # 列
+    header: header=None, # ヘッダーの行（Noneはヘッダーなし）
+    dtype: Optional[Dtype]=None, # データ型
+    copy: bool=False) # オブジェクトコピー生成の可否
+
+列のindex
+1,3,5,6,7,8,9
+1 : テーブル名
+2 : カラム名
+5 : データ型
+6 : バイト数
+7 : NULL可否
+8 : 制約名
+9 : 小数点（精度）
+"""
+"""
+col_index_list = [1,3,5,6,7,8,9]
+
+pd.DataFrame(
+    data=input_excel_dir,
+    columns=col_index_list,
+    header=0
+    )
+"""
