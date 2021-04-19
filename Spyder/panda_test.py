@@ -1,8 +1,6 @@
+# PandasでExcelファイルを閲覧・編集する
 
-"""
-PandasでExcelファイルを閲覧・編集する
-"""
-
+from os import path
 import sys
 # ライブラリ格納先を明視
 sys.path.append('c:\\users\\thele\\appdata\\local\\programs\\python\\python37\\lib\\site-packages')
@@ -41,6 +39,7 @@ $3 : 読込むテキストファイルの格納先（相対パス）
 $4 : 結果物の出力先（相対パス）
 """
 parser = argparse.ArgumentParser(description=('コマンドで引数受けった上、excel読込み及びファイル出力処理を行う'))
+#parser.add_argument('python', 'python')
 parser.add_argument('-m', '-multi')
 parser.add_argument('input_excel_dir', help='読込むexcelファイルの格納先（相対パス）')
 parser.add_argument('input_text_dir', help='読込むテキストファイルの格納先（相対パス）')
@@ -58,7 +57,9 @@ table_list = [] # テーブル名リスト
 rCount_list = [] # データ件数リスト
 
 # テキストファイル読込み
-f = open(input_text_dir, 'r')
+
+#f = path.join(path, paths)
+f = open(file=input_text_dir, mode='r')
 f_lines = f.read(-1).splitlines()
 for f_line in f_lines:
     s_list = re.split('\t', f_line)
@@ -72,12 +73,18 @@ f.close()
 col_index_list = [1,3,5,6,7,8,9]
 
 # excel読込み
+# エラー発生中
+"""
 df = pd.read_excel(
     io=input_excel_dir, # excel格納先
     sheet_name='テーブル一覧', # シート名指定
     header=0,
-    index_col=col_index_list
+    index_col=1,
+    dtype=object
     )
+"""
+# Unsupported format, or corrupt file: Expected BOF record; found b'# Pandas'
+df = pd.read_excel(input_excel_dir)
 print(df)
 # excelで必要な列だけ読込むための設定
 """
@@ -100,13 +107,4 @@ DataFrame(
 7 : NULL可否
 8 : 制約名
 9 : 小数点（精度）
-"""
-"""
-col_index_list = [1,3,5,6,7,8,9]
-
-pd.DataFrame(
-    data=input_excel_dir,
-    columns=col_index_list,
-    header=0
-    )
 """
