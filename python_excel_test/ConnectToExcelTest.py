@@ -6,7 +6,7 @@ import sys
 sys.path.append('c:\\users\\thele\\appdata\\local\\programs\\python\\python37\\lib\\site-packages')
 
 # pythonとexcelの連携ライブラリインポート
-import openpyxl
+#import openpyxl
 # 複数ファイルを処理するため、globライブラリをインポート
 import glob
 
