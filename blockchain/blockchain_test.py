@@ -10,8 +10,10 @@ class Blockchain(object()):
             """新しいブロックを生成してチェーンに入る"""
             pass
     
-    #@staticmethod()
-    #def hash
+    @staticmethod()
+    def hash(block):
+        """ブロックのハッシュ値を出力する"""
+        pass
     
     @property()
     def last_block(self):
