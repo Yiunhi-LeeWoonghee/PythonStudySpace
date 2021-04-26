@@ -1,5 +1,10 @@
 """仮想のブロックチェーンを作ってみる"""
 
+import hashlib
+import json
+from time import time
+from uuid import uuid4
+
 class Blockchain(object()):
     
     def __init__(self):
@@ -41,3 +46,6 @@ class Blockchain(object()):
     def new_block(self, proof, previous_hash=None):
         #return block
         print()
+        
+    def proof_of_work(self, last_proof):
+        """作業の証明"""
