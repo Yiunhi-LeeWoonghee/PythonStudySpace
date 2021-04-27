@@ -10,6 +10,11 @@ class Blockchain(object()):
     def __init__(self):
         self.chain=[]
         self.current_transactions=[]
+        self.index = index
+        self.timestamp = timestamp
+        self.data = data
+        self.previous_hash = previous_hash
+        self.hash = self.hash_block()
         
         def new_block(self):
             """新しいブロックを生成してチェーンに入る"""
@@ -49,3 +54,5 @@ class Blockchain(object()):
         
     def proof_of_work(self, last_proof):
         """作業の証明"""
+    
+    
